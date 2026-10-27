@@ -8,7 +8,7 @@ run:
     # 101 is the spike installation's Standard plan.
     plan: 101
     replicas: 1
-    healthEndpoint: http://localhost:3000/
+    healthEndpoint: http://localhost:3000/healthz
     network:
       ports:
         - port: 3000

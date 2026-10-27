@@ -1,0 +1,18 @@
+schemaVersion: v0.4
+prepare:
+  steps: []
+test:
+  steps: []
+run:
+  reviews:
+    # 101 is the spike installation's Standard plan.
+    plan: 101
+    replicas: 1
+    healthEndpoint: http://localhost:3000/
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+      paths: []
+    steps:
+      - command: python3 reviews.py

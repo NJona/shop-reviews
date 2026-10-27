@@ -9,7 +9,7 @@ data center: the oldest review still names the data center it was written in.
 import json
 import os
 import socket
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from pgclient import Connection, PgError
 
@@ -64,4 +64,5 @@ class Handler(BaseHTTPRequestHandler):
         pass
 
 
-HTTPServer(("", PORT), Handler).serve_forever()
+# Threaded: a slow call must not hold up health checks or other visitors.
+ThreadingHTTPServer(("", PORT), Handler).serve_forever()
